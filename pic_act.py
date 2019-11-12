@@ -11,11 +11,14 @@ image=image.convert("L")#灰度值
 threshold=150
 table=[]
 for i in range(256):
+
     if i<20:
         i=255
+
     if i< threshold:
         table.append(0)
     else:
         table.append(1)
 image= image.point(table,'1')
+image.save('change.jpg')
 image.show()

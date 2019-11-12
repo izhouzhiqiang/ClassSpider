@@ -1,7 +1,4 @@
 import requests
-import time
-import csv
-
 def login(str1,str2):
     url="http://59.67.0.220/a70.htm"
 

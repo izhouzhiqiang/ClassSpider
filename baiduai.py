@@ -12,7 +12,7 @@ def get_file_content(filePath):
     with open(filePath, 'rb') as fp:
         return fp.read()
 
-image = get_file_content('zhou.png')
+image = get_file_content('change.jpg')
 
 """ 调用通用文字识别, 图片参数为本地图片 """
 print(client.basicGeneral(image))
