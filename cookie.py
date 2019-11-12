@@ -10,5 +10,3 @@ for line in f.read().split(';'):   #按照字符：进行划分读取
 print(cookies)
 req=requests.get(url=url2,cookies=cookies)
 print(req.text)
-print(req.status_code)
-print("sbndujiesdd")
