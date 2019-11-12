@@ -1,5 +1,6 @@
 import requests
 from PIL import Image
+from lxml import etree
 #
 # name=input("输入学号:")
 # passwd=input("输入密码:")
@@ -26,28 +27,28 @@ data={
 res1=sess.post(url,data)
 url2="http://jwxtxs.tust.edu.cn:46110/student/courseSelect/thisSemesterCurriculum/index"
 
+
+'''动态文件获得'''
+url2="http://jwxtxs.tust.edu.cn:46110/student/courseSelect/thisSemesterCurriculum/ajaxStudentSchedule/callback"
 res2=sess.get(url2)
-print(res2.text)
 
-# url2="http://jwxtxs.tust.edu.cn:46110/student/courseSelect/thisSemesterCurriculum/ajaxStudentSchedule/callback"
-# res2=sess.get(url2)
+dic=res2.json()
+# print(res2.json())
+# print(type(res2.json()))
+dis=dic['xkxx'][0]
 
-# dic=res2.json()
-# # print(res2.json())
-# # print(type(res2.json()))
-# dis=dic['xkxx'][0]
-#
-# hahh=[]
-# for key,value in dis.items():
-#     for i in range(0,len(value['timeAndPlaceList'])):
-#         for j in range(0,value['timeAndPlaceList'][i]['continuingSession']//2):
-#             message=[value['attendClassTeacher'],
-#                      value['courseName'],
-#                      value['timeAndPlaceList'][i]['campusName']+
-#                      value['timeAndPlaceList'][i]['teachingBuildingName']+
-#                      value['timeAndPlaceList'][i]['classroomName'],
-#                      value['timeAndPlaceList'][i]['classDay'],
-#                      value['timeAndPlaceList'][i]['classWeek'],
-#                      value['timeAndPlaceList'][i]['classSessions']//2+1+j]
-#             print(message)
+hahh=[]
+for key,value in dis.items():
+    for i in range(0,len(value['timeAndPlaceList'])):
+        for j in range(0,value['timeAndPlaceList'][i]['continuingSession']//2):
+            message=[value['attendClassTeacher'],
+                     value['courseName'],
+                     value['timeAndPlaceList'][i]['campusName']+
+                     value['timeAndPlaceList'][i]['teachingBuildingName']+
+                     value['timeAndPlaceList'][i]['classroomName'],
+                     value['timeAndPlaceList'][i]['classDay'],
+                     value['timeAndPlaceList'][i]['classWeek'],
+                     value['timeAndPlaceList'][i]['classSessions']//2+1+j]
+            print(message)
+            '''信息提取'''
 
